@@ -7,10 +7,13 @@ import (
 )
 
 type Config struct {
-	Host       string `json: "host"`
-	Port       int    `json: "port"`
-	Redis_host string `json: "redis_host"`
-	Redis_port int    `json: "redis_port"`
+	Host                   string `json:"host"`
+	Port                   int    `json:"port"`
+	Redis_host             string `json:"redis_host"`
+	Redis_port             int    `json:"redis_port"`
+	SignPipePrivateKeyPath string `json:"SignPipePrivateKeyPath"`
+	PublicAddress          string `json:"PublicAddress"`
+	PrivateAddress         string `json:"PrivateAddress"`
 }
 
 var Conf Config
