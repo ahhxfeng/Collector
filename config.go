@@ -15,16 +15,20 @@ type Config struct {
 
 var Conf Config
 
-func (Conf *Config) LoadFromFile(path string) error {
+func (conf *Config) LoadFromFile(path string) error {
 	file, _ := os.Open(path)
 	defer file.Close()
 	decoder := json.NewDecoder(file)
-	err := decoder.Decode(&Conf)
+	err := decoder.Decode(&conf)
 	if err != nil {
 		fmt.Println("errors: ")
 		return err
 	}
-	fmt.Println("config", Conf)
+	fmt.Println("config", conf)
 	return nil
+
+}
+
+func (conf *Config) SaveToFile(path string) error {
 
 }

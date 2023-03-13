@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 var (
@@ -33,10 +34,25 @@ func doConfig() (quit bool) {
 
 	}
 	if UpdateExampleConfig {
-
+		configBackup := ConfigFilePath + ".bak"
+		err := os.Rename(ConfigFilePath, configBackup)
+		if err != nil {
+			log.Fatalln("Back up config failed")
+		} else {
+			log.Println("old config has been reame to :", configBackup)
+			log.Println("active config will update to :")
+			log.Println(fmt.Println(Conf))
+		}
+		if err := Conf.SaveToFile(ConfigFilePath); err != nil {
+			log.Println("update configure file failed")
+		} else {
+			log.Println("configure file update done")
+		}
+		return true
 	}
-	return
 
+	log.Println("current active configure:", Conf.String())
+	return
 }
 
 func main() {
