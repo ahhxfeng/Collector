@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"os"
 )
 
@@ -21,14 +21,22 @@ func (conf *Config) LoadFromFile(path string) error {
 	decoder := json.NewDecoder(file)
 	err := decoder.Decode(&conf)
 	if err != nil {
-		fmt.Println("errors: ")
+		log.Println("errors: decoder json file failed")
 		return err
 	}
-	fmt.Println("config", conf)
 	return nil
 
 }
 
 func (conf *Config) SaveToFile(path string) error {
+	file, _ := os.OpenFile(path, os.O_RDWR|os.O_CREATE, 0755)
+	defer file.Close()
+	encoder := json.NewEncoder(file)
+	err := encoder.Encode(&conf)
+	if err != nil {
+		log.Fatalln("errors: encoder json file failed")
+		return err
+	}
+	return nil
 
 }
