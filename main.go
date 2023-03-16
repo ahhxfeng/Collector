@@ -62,5 +62,6 @@ func main() {
 	if doConfig() {
 		return
 	}
-	// just for test git
+	InitLogger()
+
 }
