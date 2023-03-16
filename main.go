@@ -62,5 +62,6 @@ func main() {
 	if doConfig() {
 		return
 	}
+	InitLogger()
 
 }
