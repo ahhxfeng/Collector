@@ -24,14 +24,14 @@ func init_flag() {
 
 func doConfig() (quit bool) {
 
-	if err := Conf.LoadFromFile(ConfigFilePath); err != nil {
-		log.Fatalln(err.Error())
-	} else {
-
-	}
 	if PrintExampleConfig {
 		fmt.Println(Conf)
 		return true
+	}
+	if err := Conf.LoadFromFile(ConfigFilePath); err != nil {
+		log.Fatalln(err.Error())
+	} else {
+		log.Println("load file success ")
 	}
 	if UpdateExampleConfig {
 		fmt.Println("try to back up config")
@@ -59,6 +59,9 @@ func doConfig() (quit bool) {
 func main() {
 	init_flag()
 	flag.Parse()
-	doConfig()
+	if doConfig() {
+		return
+	}
+	InitLogger()
 
 }
