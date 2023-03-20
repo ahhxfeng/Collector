@@ -62,6 +62,5 @@ func main() {
 	if doConfig() {
 		return
 	}
-	InitLogger()
-
+	Logger.Info("~~~~~~~~~~~~~~")
 }
