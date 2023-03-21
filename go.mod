@@ -1,4 +1,4 @@
-module workspace/Collector
+module github.com/ahhxfeng/Collector
 
 go 1.18
 

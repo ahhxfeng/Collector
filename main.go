@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	. "github.com/ahhxfeng/Collector/common"
 )
 
 var (
